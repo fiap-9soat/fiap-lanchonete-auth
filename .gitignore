@@ -11,6 +11,7 @@
 crash.log
 crash.*.log
 *.terraform
+*.tfvars
 
 # User-specific files
 *.rsuser
