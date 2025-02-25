@@ -1,7 +1,19 @@
-resource "aws_cognito_user_pool" "user_pool" {
-  name = "user-pool"
+resource "aws_lambda_function" "pre_signup" {
+  filename = "lambda/pre_signup/lambda_pre_signup_payload.zip"
+  function_name = "validarCpf"
+  # Use o ARN de uma role existente com permissão!
+  role     = "arn:aws:iam::353900409457:role/LabRole"
+  handler  = "index.handler"
+  runtime  = "nodejs18.x"
+  source_code_hash = filebase64sha256("lambda/pre_signup/lambda_pre_signup_payload.zip")
+}
 
-  username_attributes      = ["email"]
+
+resource "aws_cognito_user_pool" "user_pool" {
+  depends_on = [aws_lambda_function.pre_signup]
+  name = "fiap-user-pool"
+
+  username_attributes = ["email"]
   auto_verified_attributes = ["email"]
   password_policy {
     minimum_length = 6
@@ -26,9 +38,22 @@ resource "aws_cognito_user_pool" "user_pool" {
     }
   }
 
-  #   lambda_config {
-  #     pre_sign_up = 
-  #   }
+  schema {
+    attribute_data_type      = "String"
+    developer_only_attribute = false
+    mutable                  = true
+    name                     = "cpf"
+    required                 = false
+
+    string_attribute_constraints {
+      min_length = 11
+      max_length = 11
+    }
+  }
+
+  lambda_config {
+    pre_sign_up = aws_lambda_function.pre_signup.arn
+  }
 }
 
 resource "aws_cognito_user_pool_client" "client" {
@@ -47,6 +72,7 @@ resource "aws_cognito_user_pool_client" "client" {
 }
 
 resource "aws_cognito_user_pool_domain" "cognito-domain" {
-  domain       = "gabrielaraujo"
+  # O dominio (URL) da tela de login - deve ser unico
+  domain       = "fiap-lanchonete-domain"
   user_pool_id = aws_cognito_user_pool.user_pool.id
 }
