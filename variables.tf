@@ -17,5 +17,10 @@ variable "secret_key" {
 variable "token_key" {
   type        = string
   description = "The aws development account token (optional)"
-  default     = ""
+  nullable    = true
+}
+
+variable "role_arn" {
+  description = "The ARN of the Role to be used for deploying"
+  type        = string
 }

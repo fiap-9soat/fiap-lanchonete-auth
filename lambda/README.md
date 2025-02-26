@@ -1,25 +1,9 @@
 ## Lambda
 
-Esse diretório contém os arquivos `handler` de todos os lambdas utilizados na autenticação.
+Esse diretório contém arquivos relacionados ao código-fonte dos lambdas executados durante o fluxo de autenticação.
 
-### Desenvolvimento
+### Cognito e o Login Gerenciado
 
-Após alterar o respectivo `index.js`, crie uma nova versão do arquivo `.zip` que será mencionado na configuração
-do Terraform.
-
-Exemplo:
-
-```shell
-npm init -y
-npm install axios # CASO existam dependencias
-npm instal ...
-```
-
-E crie o arquivo `zip`:
-
-```shell
-# Na pasta onde está localizado o index.js
-# Substituita 'pre_signup' pelo nome do lambda
-zip -r lambda_pre_signup_payload.zip *
-```
-
+No momento, a opção de login gerenciado não é viavél pra gente pois não temos um cliente frontend dedicado.  
+Por esse motivo, criamos lambdas para realizar a autenticação "manual" e permitir a interação diretamente com a API.  
+Em outros casos, o Cognito já provê uma interface de login nativa, e um fluxo de OpenID de fácil execução.
