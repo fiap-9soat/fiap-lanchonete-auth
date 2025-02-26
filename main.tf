@@ -1,11 +1,11 @@
 module "cognito" {
-  source = "modules/cognito"
+  source = "./modules/cognito"
   # Must be unique
-  domain = "fiap-lanchonete-login"
+  domain = "fiap-lanchonete-auth-1"
 }
 
 module "sign_up_lambda" {
-  source        = "modules/lambda"
+  source        = "./modules/lambda"
   function_name = "signUpFunction"
   filename      = "lambda/sign_up/lambda_function_payload.zip"
   handler       = "index.handler"
@@ -16,7 +16,7 @@ module "sign_up_lambda" {
 }
 
 module "sign_in_lambda" {
-  source        = "modules/lambda"
+  source        = "./modules/lambda"
   function_name = "signInFunction"
   filename      = "lambda/sign_in/lambda_function_payload.zip"
   handler       = "index.handler"
@@ -28,7 +28,8 @@ module "sign_in_lambda" {
 }
 
 module "api_gateway" {
-  source = "modules/api_gateway"
+  source = "./modules/api_gateway"
+  region = var.aws_region
   lambdas = {
     sign_up = module.sign_up_lambda.lambda_arn
     sign_in = module.sign_in_lambda.lambda_arn

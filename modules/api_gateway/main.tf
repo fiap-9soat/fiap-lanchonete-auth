@@ -35,7 +35,7 @@ resource "aws_api_gateway_integration" "sign_up_lambda" {
   http_method             = aws_api_gateway_method.sign_up_post.http_method
   type                    = "AWS_PROXY"
   integration_http_method = "POST"
-  uri                     = var.lambdas.sign_up
+  uri                     = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${var.lambdas.sign_up}/invocations"
 }
 
 resource "aws_api_gateway_integration" "sign_in_lambda" {
@@ -44,7 +44,7 @@ resource "aws_api_gateway_integration" "sign_in_lambda" {
   http_method             = aws_api_gateway_method.sign_in_post.http_method
   type                    = "AWS_PROXY"
   integration_http_method = "POST"
-  uri                     = var.lambdas.sign_in
+  uri                     = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${var.lambdas.sign_in}/invocations"
 }
 
 resource "aws_lambda_permission" "sign_up_api_gateway" {
