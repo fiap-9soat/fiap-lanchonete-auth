@@ -1,7 +1,7 @@
 module "cognito" {
   source = "./modules/cognito"
   # Must be unique
-  domain = "fiap-lanchonete-auth-1"
+  domain = var.cognito_domain
 }
 
 module "sign_up_lambda" {
@@ -27,11 +27,23 @@ module "sign_in_lambda" {
   }
 }
 
+module "password_recovery_lambda" {
+  source        = "./modules/lambda"
+  function_name = "passwordRecoveryFunction"
+  filename      = "lambda/password_recovery/lambda_function_payload.zip"
+  handler       = "index.handler"
+  role          = var.role_arn
+  environment = {
+    CLIENT_ID = module.cognito.client_id
+  }
+}
+
 module "api_gateway" {
   source = "./modules/api_gateway"
   region = var.aws_region
   lambdas = {
-    sign_up = module.sign_up_lambda.lambda_arn
-    sign_in = module.sign_in_lambda.lambda_arn
+    sign_up           = module.sign_up_lambda.lambda_arn
+    sign_in           = module.sign_in_lambda.lambda_arn
+    password_recovery = module.password_recovery_lambda.lambda_arn
   }
 }

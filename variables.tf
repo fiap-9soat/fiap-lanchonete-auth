@@ -24,3 +24,9 @@ variable "role_arn" {
   description = "The ARN of the Role to be used for deploying"
   type        = string
 }
+
+variable "cognito_domain" {
+  description = "The unique domain URI for Cognito"
+  type        = string
+  default     = "fiap-lanchonete-auth-1"
+}
