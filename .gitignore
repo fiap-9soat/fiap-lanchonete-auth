@@ -12,6 +12,7 @@ crash.log
 crash.*.log
 *.terraform
 *.tfvars
+dev.auto.tfvars
 
 # User-specific files
 *.rsuser
