@@ -37,7 +37,7 @@ jobs:
           aws-access-key-id: $TF_VAR_aws_access_key
           aws-secret-access-key: $TF_VAR_aws_secret_key
           aws-session-token: $TF_VAR_aws_token_key
-          aws-region: $TF_VAR_aws_region
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Checkout
         uses: actions/checkout@v4
