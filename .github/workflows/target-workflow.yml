@@ -36,7 +36,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-session-token: "$TF_VAR_aws_token_key"
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }} | base64 --decode
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Checkout
