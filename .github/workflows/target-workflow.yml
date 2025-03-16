@@ -31,6 +31,14 @@ jobs:
     runs-on: ubuntu-latest
     name: Apply terraform plan
     steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }} | base64 --decode
+          aws-region: ${{ secrets.AWS_REGION }}
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -38,13 +46,6 @@ jobs:
           token: ${{ secrets.PAT }}
           clean: false
       
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: $TF_VAR_aws_access_key
-          aws-secret-access-key: $TF_VAR_aws_secret_key
-          aws-session-token: $TF_VAR_aws_token_key
-          aws-region: us-east-1
       - name: terraform apply
         uses: dflook/terraform-apply@v1
 
