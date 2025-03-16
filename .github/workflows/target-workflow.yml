@@ -38,7 +38,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }} | base64 --decode
           aws-region: ${{ secrets.AWS_REGION }}
-          aws-assume-role: "arn:aws:iam::123291832101:role/LabRole"
+          role-to-assume: "arn:aws:iam::123291832101:role/LabRole"
 
       - name: Checkout
         uses: actions/checkout@v4
