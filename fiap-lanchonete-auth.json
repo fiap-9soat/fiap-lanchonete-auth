@@ -1,0 +1,88 @@
+{
+  "info": {
+    "name": "fiap-lanchonete-auth",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Cadastro (create)",
+      "event": [],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": "https://yjj3g3ipw2.execute-api.us-east-1.amazonaws.com/prod/sign-up",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"meuemailmuitolegal@gmail.com\",\n    \"password\": \"123456789\",\n    \"cpf\": \"19607832035\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Login",
+      "event": [],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": "https://yjj3g3ipw2.execute-api.us-east-1.amazonaws.com/prod/sign-in",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"meuemailmuitolegal@gmail.com\",\n    \"password\": \"123456789\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Recuperação de senha",
+      "event": [],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": "https://yjj3g3ipw2.execute-api.us-east-1.amazonaws.com/prod/password-recovery",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"meuemailmuitolegal@gmail.com\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Renovar token",
+      "event": [],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJraWQiOiJhRVVvVkZ3UEFiUUJaUjFBcFY3MFwva242UmJtSFNGejVFXC96Mm95b3R5WTQ9IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiI1NGM4NTRkOC00MDExLTcwZjctYzk2Yi1lMWVmMWRiMmU4YmQiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9MMHp3ZEo2dHgiLCJjbGllbnRfaWQiOiIzYzR2NzNxbGMxOWJwMG1ldm05NGY1YTRjbyIsIm9yaWdpbl9qdGkiOiI2YTkwMzdiNy05OTUxLTQ5YzUtODA3Ni0yMDE2YWVlNGFmOGYiLCJldmVudF9pZCI6ImM0NjBhMzAzLTE5OTMtNDcwMS05MWQyLWFmMWY1YTcyODRmNyIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE3NDIwODE5NjQsImV4cCI6MTc0MjA4NTU2MywiaWF0IjoxNzQyMDgxOTY0LCJqdGkiOiJkZDBhOTQ4MS01YWYyLTQ4MDMtOTRjZC0xMWEyNDQ5NjZlZDciLCJ1c2VybmFtZSI6IjU0Yzg1NGQ4LTQwMTEtNzBmNy1jOTZiLWUxZWYxZGIyZThiZCJ9.LGZWMpfTSYTU93tuBXm5c8PyE1HFKXGU3xoz2nnJpmXwBU-WFIQAlessyuoV8hVR02EcT2qRkpVNljhmva4_cQp7Rs0BS7aS4vM5ri4qy2nqrS4nCoKUBhQ2q1Ov7_zkHCdA_Y7ETCsWjoMUrPWxSeyVzDN9_P6NyI74VRBrA6b95K5GqZcdUhebk2lkro2NfLb0wKMCmOEtRu6-weN8jTJHZohl-lfBwLiLx_xIONzNfSrw1vqX9jplk-1tHUP0LVEZY6XsiRhzV_bAULc3d_U3phjSKZnLamAyoPWTcJ0_D1ZvllVg9b5ICijZVHWUYNAmcw08XKULWQD5eQbiqQ",
+            "disabled": false,
+            "type": "default"
+          }
+        ],
+        "url": "https://yjj3g3ipw2.execute-api.us-east-1.amazonaws.com/prod/refresh-token",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"refreshToken\": \"eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ.hwZcqf7uS42fiSIV0dD1SVUAZsC1CmhkabXHgjuqVaMv-M63xUisNbJnlmjH4mnb-6Ut268njRLmNPl43-xhf9VK5RoBAILR8j4rKKQ8uHdiEL6qmihupHNQXbenKKBvEwZzaFd8Lp55jPE1xDmNAtUp6G2KFDyW4Oi89WcTX6M11x1A8PwhcYVcu_y-JUV8hx0WAEf3goOOTHkolR1cGNrWwFDhaoJMTL9-sChCtVL2fHLuPRYrWuuMA3QCwi-tF1zWBQ6jFAEv7oE5AmBkH2KtF-TBslkCOxEo5Q52Dan7QBN9SQfPDMYOtyv50_tJl3qeDe76FWvTXSraJ10hRQ.h2mn6Xoc3fHbHY1-.rVwD-BubQwzVIMkaoIpySb8ytQ_Zz_40YU8VSjpenmJqm-TrpzFOs48ySXyViZsHhgZOKo4oBrxPSiKZF-y2Jet2AFkIwuxaKCkgt_z0a83unTzjrSpyOm6hbqqVpsW97bwz22pFn6HIx5VbpaMk-rzZTYrfKvd3CfdhF1z0WmeL7zLb7QANj3P9S_hp6H5TEECZXBhPBfAo0c6fX6lIuMZL9GEkb8lqMTWUBmp7XOjKzlSnHOpKFeczqpzLbQH8SFDJOn57LbxGpsFLfgGFP1N8eCHsK33Dh-fcX9pH5n482XNCOYgF9zb69MGEam9B42mwXxMWEToz17SMEBxDbvKpPEoj3VjqTXfo_6Sou-TYBK8kdaSHd0GYa9ZVR7VzP3fsRy6PDt-fcFp98H_JNcWXkh7KZ22EGD9_JHwoxE3u3Ds6jTcM-Fhj7-SLqxHIA0iGE04VblbmcoI7gKz2uPDP-abVKuiQS1ITx8k0OfPjnHtSbeqXuZzzdJYNTcIIYRtgANovhI6ShsQyCV5ZifGZQAw0LAaKGrX-00WBBFZruy24qlwOSTD7VUoOPi02EFuaU-01VF5YO-PYFvlnXP8Zs1lwQQ0C2XE2A4N5SZV997aO6zcnP48a68MDTV83Ot4PfM8GuCKmm0K3DusFEpBXjB5WTYYQR4hZ4Rcl_pl2w91c9a7c6gSd1HvgwehVu_K66ExeFMc80hvKsu10wEu2reZw8y-_kRuoWKoSncIppSaOn9eURSuiiUg-HImtZX48SBfYcfLlTtmVPGFno-VOBByLGaxQ6cKufgJWqUYu_9hZwi0lA_YMDVLOG8Cfc0eC7fACP3E409zMhFJ0x7LK2EbQ6bI7rXFwPjodxenBJB_V6IzvdB-d75ngqN8GDTdBWnXA97sYY50nldbtUKDBilqk77w70HElTynJJskLO-7MYFH_RiMOoWX_FN2woLDJzzO-8ayLIHW9Q-8Saa8PzYivdPM3zLKrpJBn7jt4x3USve5hjwRr_EWA-UhqovDVYTrxg5VKASp5DNWZd405NUd0SLtoxQJmLIfr0SiYWrrjQCziL60wu7XHTSP_hL6d0GvIWUoCXYvX8dhlxvF2lkr1dHFW57uV4AO1Uurs_dOh1Nyt4etJ_s8yn92-5kK57k6B0SXDaNNNHo4U2klPpO8cXCS11kxHincfXQA84z1OCzvFOHyf6tuBRwJsZWHAI55wTYjQvjqYeEo9R6yYTEj0WPDUGYYMd96kK24KtlNe7r7P2XblFVA5DDEcsvAba9XXeru1nhbpUycNJFNIEKgj64U1RRF-aq460i82IgGqkitKIhxOUK4.erXRgKHp3X2IdqshNuLGYg\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "variable": []
+}

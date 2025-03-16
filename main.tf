@@ -44,6 +44,18 @@ module "password_recovery_lambda" {
   }
 }
 
+module "refresh_token_lambda" {
+  source = "./modules/lambda"
+  function_name = "refreshTokenLambda"
+  filename      = "lambda/refresh_token/lambda_function_payload.zip"
+  handler       = "index.handler"
+  role          = local.iam_role_arn
+  environment = {
+    USER_POOL_ID = module.cognito.user_pool_id
+    CLIENT_ID    = module.cognito.client_id
+  }
+}
+
 module "api_gateway" {
   source = "./modules/api_gateway"
   region = var.aws_region
@@ -51,5 +63,6 @@ module "api_gateway" {
     sign_up           = module.sign_up_lambda.lambda_arn
     sign_in           = module.sign_in_lambda.lambda_arn
     password_recovery = module.password_recovery_lambda.lambda_arn
+    refresh_token = module.refresh_token_lambda.lambda_arn
   }
 }

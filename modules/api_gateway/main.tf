@@ -21,6 +21,12 @@ resource "aws_api_gateway_resource" "password_recovery" {
   path_part   = "password-recovery"
 }
 
+resource "aws_api_gateway_resource" "refresh_token" {
+  rest_api_id = aws_api_gateway_rest_api.api.id
+  parent_id   = aws_api_gateway_rest_api.api.root_resource_id
+  path_part   = "refresh-token"
+}
+
 resource "aws_api_gateway_method" "sign_up_post" {
   rest_api_id   = aws_api_gateway_rest_api.api.id
   resource_id   = aws_api_gateway_resource.sign_up.id
@@ -38,6 +44,13 @@ resource "aws_api_gateway_method" "sign_in_post" {
 resource "aws_api_gateway_method" "password_recovery_post" {
   rest_api_id   = aws_api_gateway_rest_api.api.id
   resource_id   = aws_api_gateway_resource.password_recovery.id
+  http_method   = "POST"
+  authorization = "NONE"
+}
+
+resource "aws_api_gateway_method" "refresh_token_post" {
+  rest_api_id   = aws_api_gateway_rest_api.api.id
+  resource_id   = aws_api_gateway_resource.refresh_token.id
   http_method   = "POST"
   authorization = "NONE"
 }
@@ -69,6 +82,15 @@ resource "aws_api_gateway_integration" "password_recovery_lambda" {
   uri                     = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${var.lambdas.password_recovery}/invocations"
 }
 
+resource "aws_api_gateway_integration" "refresh_token_lambda" {
+  rest_api_id             = aws_api_gateway_rest_api.api.id
+  resource_id             = aws_api_gateway_resource.refresh_token.id
+  http_method             = aws_api_gateway_method.refresh_token_post.http_method
+  type                    = "AWS_PROXY"
+  integration_http_method = "POST"
+  uri                     = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${var.lambdas.refresh_token}/invocations"
+}
+
 resource "aws_lambda_permission" "sign_up_api_gateway" {
   statement_id  = "AllowAPIGatewayInvokeSignUp"
   action        = "lambda:InvokeFunction"
@@ -93,12 +115,26 @@ resource "aws_lambda_permission" "password_recovery_api_gateway" {
   source_arn    = "${aws_api_gateway_rest_api.api.execution_arn}/*/*"
 }
 
+resource "aws_lambda_permission" "refresh_token_api_gateway" {
+  statement_id  = "AllowAPIGatewayInvokePasswordRecovery"
+  action        = "lambda:InvokeFunction"
+  function_name = var.lambdas.refresh_token
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_api_gateway_rest_api.api.execution_arn}/*/*"
+}
+
 resource "aws_api_gateway_deployment" "deployment" {
+  rest_api_id = aws_api_gateway_rest_api.api.id
+  stage_name = "prod"
+
+  triggers = {
+    redeployment = sha1(jsonencode(aws_api_gateway_rest_api.api))
+  }
+
   depends_on = [
     aws_api_gateway_integration.sign_up_lambda,
     aws_api_gateway_integration.sign_in_lambda,
-    aws_api_gateway_integration.password_recovery_lambda
+    aws_api_gateway_integration.password_recovery_lambda,
+    aws_api_gateway_integration.refresh_token_lambda
   ]
-
-  rest_api_id = aws_api_gateway_rest_api.api.id
 }
