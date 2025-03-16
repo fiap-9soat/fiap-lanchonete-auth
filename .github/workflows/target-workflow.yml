@@ -13,6 +13,8 @@ on:
         required: true
       AWS_SESSION_TOKEN :
         required: true
+      GITHUB_TOKEN:
+        required: true
 
 env:
   GITHUB_TOKEN: ${{ secrets.PAT }}
