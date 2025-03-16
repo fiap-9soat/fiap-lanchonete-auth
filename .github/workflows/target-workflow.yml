@@ -17,10 +17,10 @@ on:
         required: true
 
 env:
-  TF_VAR_aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
-  TF_VAR_aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  TF_VAR_aws_token_key: ${{ secrets.AWS_SESSION_TOKEN }} | base64 --decode
-  TF_VAR_aws_region: ${{ secrets.AWS_REGION }}
+  TF_VAR_aws_access_key: "${{ secrets.AWS_ACCESS_KEY }}"
+  TF_VAR_aws_secret_key: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+  TF_VAR_aws_token_key: "${{ secrets.AWS_SESSION_TOKEN }} | base64 --decode"
+  TF_VAR_aws_region: "${{ secrets.AWS_REGION }}"
 
 permissions:
   contents: read
