@@ -32,8 +32,8 @@ jobs:
     name: Apply terraform plan
     steps:
       - name: Changing working dir
-        run: cd
-        
+        run: cd ./auth
+
       - name: Checkout
         uses: actions/checkout@v4
 
