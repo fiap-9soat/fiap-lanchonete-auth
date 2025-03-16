@@ -13,6 +13,8 @@ on:
         required: true
       AWS_SESSION_TOKEN :
         required: true
+      AWS_REGION:
+        required: true
       GITHUB_TOKEN:
         required: true
 
@@ -21,6 +23,7 @@ env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }} | base64 --decode
+  AWS_REGION: ${{ secrets.AWS_REGION }}
 
 permissions:
   contents: read
