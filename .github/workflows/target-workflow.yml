@@ -31,13 +31,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Apply terraform plan
     steps:
-      - name: Changing working dir
-        run: | 
-          mkdir auth
-          cd ./auth
-
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          repository: fiap-9soat/fiap-lanchonete-auth
+          token: ${{ secrets.PAT }}
 
       - name: terraform apply
         uses: dflook/terraform-apply@v1
