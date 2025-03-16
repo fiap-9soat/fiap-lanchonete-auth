@@ -34,11 +34,10 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }} | base64 --decode
-          aws-region: ${{ secrets.AWS_REGION }}
-          role-to-assume: "arn:aws:iam::123291832101:role/LabRole"
+          aws-access-key-id: "ASIAZ3PR22SGMKU5C3S7"
+          aws-secret-access-key: "IhCY8lBwG65jDzZWdGxQd9gZWo0V8P6FvloXxSjC"
+          aws-session-token: "IQoJb3JpZ2luX2VjENP//////////wEaCXVzLXdlc3QtMiJHMEUCIQDu0eee2v+eZkIVLd3/VG907qUuamT+gL706s/eRm2C2gIgTelePbgYczofwySa9docEQDxvZ7bGyQdU/3ltZEeTzEqqgIILBACGgw2Nzc1MDEzOTIwMTIiDMsH/JxNvNabzrW3VSqHAu4IiiiEr03nJ0qk63Okz2vzMDUiMIpJCkhNX7NUZ+TmeXyE7ORn/CMZM8rvqmZ5y+sT1YONMghqdoq5lSmDOZCvCh/JEvHLOM11oV4jN7C6jDhu8i7/6eOKsiHjnK/FdGG6RqgkXG9pwCfWkjdB+SCZyVfttUTXQXtQ+mukUSLbrl+t5aFns8ajyOw5rHP3g0Z6eM+RK52JBucGR54HXm8y4QQxw+qE9G9zSyMB4nMtsDXQfuvZdADWJjlF7wD3L/+CgLJ0mlG43lMUt9UO4Zm9lG1lRNg2OTzx09VgzbqWbReoLF8IuysIYS48nxe14MR7zlVIWMXxSsW/pxbnThht3aaRn8XmMOfg2r4GOp0BKSbK7iZ2fJGTitce/8JLvXHuOcLhButKOjI2mXLvWwNdL36Wd90hxvkx+vQKtSKof6tjY0mJHQXl3ZlOp4HqX454ZObo1KUZrLIk/P2zAwtadp1fx4SB/RO1TkxHrukw3kJD8Wk9Vgzyu2GdaVm3MuM6KD/4rYqddvReedvacNEJCi2qhXvav2TQryCsm4D/rBUGeyjIzE8GF9Ol2Q=="
+          aws-region: "us-east-1"
 
       - name: Checkout
         uses: actions/checkout@v4
