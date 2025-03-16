@@ -38,6 +38,6 @@ jobs:
         uses: dflook/terraform-apply@v1
         with:
           variables: |
-            access_key = $AWS_ACCESS_KEY_ID
-            secret_key = $AWS_SECRET_ACCESS_KEY
-            token_key = $AWS_SESSION_TOKEN
+            access_key = ${{ secrets.AWS_ACCESS_KEY }}
+            secret_key = ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            token_key = ${{ secrets.AWS_SESSION_TOKEN }} | base64 --decode
