@@ -46,7 +46,20 @@ jobs:
           token: ${{ secrets.PAT }}
           clean: false
       
-      - name: terraform apply
-        uses: dflook/terraform-apply@v1
+      - name: Setup Terraform with specified version on the runner
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.11.1
+
+      - name: Terraform init
+        id: init
+        run: terraform init
+
+      - name: Terraform plan
+        run: terraform plan -no-color -input=false
+        continue-on-error: true
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve -input=false
 
 
