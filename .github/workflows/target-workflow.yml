@@ -11,9 +11,11 @@ on:
         required: true
       AWS_SECRET_ACCESS_KEY:
         required: true
-      AWS_SESSION_TOKEN :
+      AWS_SESSION_TOKEN:
         required: true
       AWS_REGION:
+        required: true
+      PAT:
         required: true
 
 env:
@@ -45,7 +47,7 @@ jobs:
           repository: fiap-9soat/fiap-lanchonete-auth
           token: ${{ secrets.PAT }}
           clean: true
-      
+
       - name: Setup Terraform with specified version on the runner
         uses: hashicorp/setup-terraform@v2
         with:
@@ -61,5 +63,3 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve -input=false
-
-
