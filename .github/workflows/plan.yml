@@ -20,7 +20,6 @@ jobs:
         uses: dflook/terraform-apply@v1
         with:
           variables: |
-            access_key = "${{ secrets.TERRAFORM_ACCESS_KEY }}"
-            secret_key = "${{ secrets.TERRAFORM_SECRET_KEY }}"
-            token_key = "${{ secrets.TERRAFORM_TOKEN_KEY }}"
-            role_arn = "${{ secrets.TERRAFORM_ROLE_ARN }}"
+            aws_access_key = "${{ secrets.TERRAFORM_AWS_ACCESS_KEY }}"
+            aws_secret_key = "${{ secrets.TERRAFORM_AWS_SECRET_KEY }}"
+            aws_token_key = "${{ secrets.TERRAFORM_AWS_TOKEN_KEY }}"
