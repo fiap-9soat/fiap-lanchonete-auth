@@ -181,9 +181,9 @@ A resposta será algo parecido com isso:
 ```
 
 #### Fluxo de vida do AccessToken
-As informações recebidas no `AccessToken` e `RefreshToken` devem ser transitadas nas requisições para a API principal.  
-O `AccessToken` deve ser passado no header `Authorization`, no estilo `Bearer`:  
-`Authorization Bearer eyJraWQiOiJhRV......`
+As informações recebidas no `IdToken` devem ser transitadas nas requisições para a API principal.  
+O `IdToken` deve ser passado no header `Authorization`:  
+`Authorization eyJraWQiOiJhRV......`
 
 O cliente chamador deve fazer o gerenciamento manual desses tokens, e realizar a chamada de `refresh` do token sempre que o mesmo 
 expirar.  
