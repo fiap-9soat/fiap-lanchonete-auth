@@ -9,24 +9,6 @@ Serverless) para autenticação e autorização de acesso.
 
 Certifique-se de ter instalado uma versão recente da CLI do `terraform`.
 
-### Autenticação com o Terraform HCP
-
-Essa organização utiliza o Terraform HCP para compartilhamento de estado entre os repositórios.  
-Isso significa que é **obrigatório** realizar o login na plataforma para prosseguir com a instalação:
-https://developer.hashicorp.com/terraform/tutorials/cloud-get-started/cloud-login
-
-### Criando uma organização e workspace
-
-No Painel do Terraform HCP, é importante copiar o nome da organização e o workspace alvo da configuração.  
-Esse passo é essencial, e os valores devem ser especificados nas variaveis de ambiente a seguir:
-
-```hcl
-hcp_org = "fiap-lanchonete" # Nome da organização no Terraform HCP
-hcp_workspace = "lanchonete-infra-2" # Nome da workspace pertencente a organização no Terraform HCP
-```
-
-Esse passo é obrigatório para **todos** os projetos de Terraform dessa organização.
-
 ### Variaveis de ambiente
 
 É necessário criar algumas variaveis de ambiente para viabilizar a aplicação das configurações pelo CLI do Terraform.  
