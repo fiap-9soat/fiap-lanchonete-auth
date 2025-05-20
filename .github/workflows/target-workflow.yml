@@ -46,7 +46,7 @@ jobs:
         with:
           repository: fiap-9soat/fiap-lanchonete-auth
           token: ${{ secrets.PAT }}
-          clean: true
+          clean: false
 
       - name: Setup Terraform with specified version on the runner
         uses: hashicorp/setup-terraform@v2
